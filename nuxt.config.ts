@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'luna-main',
+      title: 'Luna Status',
       meta: [
 
       ],
