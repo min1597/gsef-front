@@ -102,18 +102,18 @@ div.w-full.flex.justify-center.py-12
                 div.flex.justify-start.items-center.gap-3(v-if="data.status == 'Green'")
                     ping.w-3.h-3.bg-green-500(class='min-w-[0.75rem]')
                     h3.font-semibold.text-lg 모든 서비스가 정상적으로 작동하고 있습니다.
-                div.flex.justify-start.items-center.gap-3(v-if="data.status == 'Yellow'")
+                div.flex.justify-start.items-center.gap-3(v-else-if="data.status == 'Yellow'")
                     ping.w-3.h-3.bg-yellow-500(class='min-w-[0.75rem]')
                     h3.font-semibold.text-lg 일부 서비스가 지연되어 작동하고 있습니다.
-                div.flex.justify-start.items-center.gap-3(v-if="data.status == 'Red'")
+                div.flex.justify-start.items-center.gap-3(v-else-if="data.status == 'Red'")
                     ping.w-3.h-3.bg-red-500(class='min-w-[0.75rem]')
                     h3.font-semibold.text-lg 일부 서비스에 오류가 발생하였습니다.
-                div.flex.justify-start.items-center.gap-3(v-if="data.status == 'Purple'")
+                div.flex.justify-start.items-center.gap-3(v-else-if="data.status == 'Purple'")
                     ping.w-3.h-3.bg-purple-500(class='min-w-[0.75rem]')
                     h3.font-semibold.text-lg 일부 서비스에 예정된 점검이 시행되고 있습니다.
             template(v-if='data.maintenances !== null')
                 h3.font-regular.text-sm(v-if='data.maintenances.length == 0') 예정된 점검 일정이 존재하지 않습니다.
-                h3.font-regular.text-sm(v-if='data.maintenances.length !== 0') 일부 서비스에 점검이 예정되어 있습니다. 자세한 내용은 아래를 확인해주세요.
+                h3.font-regular.text-sm(v-else) 일부 서비스에 점검이 예정되어 있습니다. 자세한 내용은 아래를 확인해주세요.
         template(v-if='data.services !== null')
             div.w-full.bg-zinc-100.px-6.py-4(class='min-md:rounded-xl min-md:mx-2 dark:bg-zinc-900' v-for='group in data.services')
                 div.w-full.flex.justify-between.items-center
@@ -125,23 +125,24 @@ div.w-full.flex.justify-center.py-12
                             h3.transition-all.font-regular.text-sm.text-blue-400.cursor-pointer(class='hover:text-blue-500' @click='openMaintenance(group.id, service.id)' v-if='service.announcedMaintenances.length !== 0') 예정된 점검
                             ping.bg-green-500(class='w-2.5 h-2.5')
                             h3.font-regular.text-sm.text-green-500 정상
-                        span.flex.justify-end.items-center.gap-2(v-if="service.status == 'Purple'")
+                        span.flex.justify-end.items-center.gap-2(v-else-if="service.status == 'Purple'")
                             h3.transition-all.font-regular.text-sm.text-blue-400.cursor-pointer(class='hover:text-blue-500' @click='openMaintenance(group.id, service.id)' v-if='service.announcedMaintenances.length !== 0') 점검 정보
                             ping.bg-purple-500(class='w-2.5 h-2.5')
                             h3.font-regular.text-sm.text-purple-500 점검
-                        span.flex.justify-end.items-center.gap-2(v-if="service.status == 'Red'")
+                        span.flex.justify-end.items-center.gap-2(v-else-if="service.status == 'Red'")
                             h3.transition-all.font-regular.text-sm.text-blue-400.cursor-pointer(class='hover:text-blue-500' @click='openMaintenance(group.id, service.id)' v-if='service.announcedMaintenances.length !== 0') 예정된 점검
                             ping.bg-red-500(class='w-2.5 h-2.5')
                             h3.font-regular.text-sm.text-red-500 오류
-                        span.flex.justify-end.items-center.gap-2(v-if="service.status == 'Yellow'")
+                        span.flex.justify-end.items-center.gap-2(v-else-if="service.status == 'Yellow'")
                             h3.transition-all.font-regular.text-sm.text-blue-400.cursor-pointer(class='hover:text-blue-500' @click='openMaintenance(group.id, service.id)' v-if='service.announcedMaintenances.length !== 0') 예정된 점검
                             ping.bg-yellow-500(class='w-2.5 h-2.5')
                             h3.font-regular.text-sm.text-yellow-500 Delayed
-                        span.flex.justify-end.items-center.gap-2(v-if="service.status == 'Orange'")
+                        span.flex.justify-end.items-center.gap-2(v-else-if="service.status == 'Orange'")
                             h3.transition-all.font-regular.text-sm.text-blue-400.cursor-pointer(class='hover:text-blue-500' @click='openMaintenance(group.id, service.id)' v-if='service.announcedMaintenances.length !== 0') 예정된 점검
                             ping.bg-orange-500(class='w-2.5 h-2.5')
                             h3.font-regular.text-sm.text-orange-500 Re-routed
         div.w-full.overflow-x-auto.px-3
+            h3.font-semibold.text-sm 상태별 내용
             div.whitespace-nowrap
                 div.w-full.flex.justify-start.items-center.gap-2
                     span.flex.justify-end.items-center.gap-2
