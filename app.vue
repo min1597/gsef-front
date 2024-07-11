@@ -2,7 +2,6 @@
 modal
 NuxtPage
 </template>
-
 <style>
 html {
   @apply bg-white;
