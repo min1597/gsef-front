@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: 'Luna Status',
+      title: '실시간 순위 확인 시스템 - 경기체육교육 진로진학 페스티벌',
       meta: [
 
       ],
