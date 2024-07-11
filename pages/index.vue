@@ -77,7 +77,7 @@ div.w-full.flex.justify-center.py-12
                         div.w-40.text-center(v-if="data.sport !== 'total'") 최종 기록
                     template(v-for='(person, index) of response[data.gender][data.sport]')
                         div.border-b.px-5.py-2.flex.justify-start.items-center(v-if="toJSON(person).indexOf(searchData.value) !== -1")
-                            div.w-12.text-center {{ response[data.gender][data.sport].filter(_person => { return _person[data.sport] > person[data.sport] }).length + 1 }}
+                            div.w-12.text-center {{ response[data.gender][data.sport].filter(_person => { return (data.sport == 'total' ? _person[data.sport] : _person[data.sport].score) > (data.sport == 'total' ? person[data.sport] : person[data.sport].score) }).length + 1 }}
                             div.w-12.text-center {{ person.totalNumber }}
                             div.w-12.text-center {{ person.team }}조
                             div.w-20.text-center {{ person.name }}
