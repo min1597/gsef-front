@@ -82,7 +82,7 @@ div.w-full.flex.justify-center.py-12
                             div.w-12.text-center {{ person.team }}조
                             div.w-20.text-center {{ person.name }}
                             div.w-40.text-center {{ person.schoolName }}
-                            div.w-40.text-center {{ person[data.sport].score ?? '-' }}
+                            div.w-40.text-center {{ data.sport == 'total' ? person[data.sport] : (person[data.sport].score ?? '-') }}
                             div.w-40.text-center(v-if="[ 'jump', 'longJump', 'flex', 'belly' ].indexOf(data.sport)") {{ person[data.sport].firstValue ?? '-' }}
                             div.w-40.text-center(v-if="[ 'jump', 'longJump', 'flex', 'belly' ].indexOf(data.sport)") {{ person[data.sport].secondValue ?? '-' }}
                             div.w-40.text-center {{ person[data.sport].value ?? '-' }}
