@@ -1,7 +1,7 @@
 <template lang='pug'>
 modal
 NuxtPage
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4ec84dd60cea4b568ab7d18282e4120f"}'></script>
+//- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4ec84dd60cea4b568ab7d18282e4120f"}'></script>
 </template>
 <style>
 html {
