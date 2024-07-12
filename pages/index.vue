@@ -75,9 +75,9 @@ div.w-full.flex.justify-center.py-12
                         div.w-40.text-center(v-if="[ 'jump', 'longJump', 'flex', 'belly' ].indexOf(data.sport) !== -1") 1차 기록
                         div.w-40.text-center(v-if="[ 'jump', 'longJump', 'flex', 'belly' ].indexOf(data.sport) !== -1") 2차 기록
                         div.w-40.text-center(v-if="data.sport !== 'total'") 최종 기록
-                    template(v-for='(person, index) of response[data.gender][data.sport]')
+                    template(v-for='(person, index) of response[data.gender][data.sport].sort((a, b) => { return (data.sport == "total" ? a[data.sport] : a[data.sport].value) - (data.sport == "total" ? b[data.sport] : b[data.sport].value) }).reverse()')
                         div.border-b.px-5.py-2.flex.justify-start.items-center(v-if="toJSON(person).indexOf(searchData.value) !== -1")
-                            div.w-12.text-center {{ response[data.gender][data.sport].filter(_person => { return (data.sport == 'total' ? _person[data.sport] : _person[data.sport].score) > (data.sport == 'total' ? person[data.sport] : person[data.sport].score) }).length + 1 }}
+                            div.w-12.text-center {{ response[data.gender][data.sport].filter(_person => { return (data.sport == 'total' ? _person[data.sport] : _person[data.sport].value) > (data.sport == 'total' ? person[data.sport] : person[data.sport].value) }).length + 1 }}
                             div.w-12.text-center {{ person.totalNumber }}
                             div.w-12.text-center {{ person.team }}조
                             div.w-20.text-center {{ person.name }}
